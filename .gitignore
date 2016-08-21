@@ -8,3 +8,5 @@
 /AddressBook.Api.Tests/obj/Debug
 /AddressBook.React.Web/obj/Debug
 /AddressBook.React.Web/node_modules
+/AddressBook.Api/bin
+/AddressBook.React.Web/bin

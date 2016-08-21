@@ -44,12 +44,14 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="src\components\contact.jsx" />
-    <Content Include="src\components\header.js" />
-    <None Include="index.jsx" />
+    <None Include="src\components\contactList.jsx" />
+    <None Include="src\components\contactBox.jsx" />
+    <None Include="src\components\contactForm.jsx" />
     <Content Include="Mock.html" />
     <Content Include="packages.config" />
     <Content Include="package.json" />
     <Content Include="webpack.config.js" />
+    <Content Include="src\components\main.jsx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -42,371 +42,18 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!*******************!*\
-  !*** ./index.jsx ***!
-  \*******************/
+/*!*********************************!*\
+  !*** ./src/components/main.jsx ***!
+  \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var React = __webpack_require__(/*! react */ 1);
+	
 	var ReactDOM = __webpack_require__(/*! react-dom */ 158);
 	
-	var ContactBox = React.createClass({
-	    displayName: 'ContactBox',
-	
-	
-	    getInitialState: function getInitialState() {
-	        return { data: [] };
-	    },
-	
-	    loadContactsFromServer: function loadContactsFromServer() {
-	        $.ajax({
-	            url: 'http://localhost:5000/api/contacts',
-	            dataType: 'json',
-	            type: 'GET',
-	            cache: false,
-	            success: function (data) {
-	                this.setState({ data: data });
-	            }.bind(this),
-	            error: function (xhr, status, err) {
-	                console.error(this.props.url, status, err.toString());
-	            }.bind(this)
-	        });
-	    },
-	
-	    componentDidMount: function componentDidMount() {
-	        this.loadContactsFromServer();
-	    },
-	
-	    render: function render() {
-	        return React.createElement(
-	            'div',
-	            { className: 'container body-content' },
-	            React.createElement(
-	                'div',
-	                { className: 'row', style: { "margin-top": "30px" } },
-	                React.createElement(ContactForm, { onContactSubmit: this.handleContactSubmit }),
-	                React.createElement(ContactList, { data: this.state.data, OnContactDelete: this.handleDelete })
-	            )
-	        );
-	    },
-	
-	    handleContactSubmit: function handleContactSubmit(contact) {
-	
-	        var contact1 = {
-	            "FirstName": contact.firstname,
-	            "LastName": contact.lastname,
-	            "Email": contact.email
-	        };
-	
-	        $.ajax({
-	            url: 'http://localhost:5000/api/contacts',
-	            dataType: 'json',
-	            type: 'POST',
-	            data: contact1,
-	            success: function (contact) {
-	                //this.setState({ data: data });
-	            }.bind(this),
-	            error: function (xhr, status, err) {
-	                console.error(this.props.url, status, err.toString());
-	            }.bind(this)
-	        });
-	    },
-	
-	    handleDelete: function handleDelete(id) {
-	
-	        $.ajax({
-	            url: 'http://localhost:5000/api/contacts/' + id,
-	            dataType: 'json',
-	            type: 'DELETE',
-	            cache: false,
-	            success: function (res) {
-	                //this.setState({data: res});
-	            }.bind(this),
-	            error: function (xhr, status, err) {
-	                console.error(this.props.url, status, err.toString());
-	            }.bind(this)
-	        });
-	        var items = this.state.data.filter(function (contact) {
-	            return contact.Id != id;
-	        });
-	
-	        this.setState({ data: items });
-	    }
-	
-	});
-	
-	var ContactForm = React.createClass({
-	    displayName: 'ContactForm',
-	
-	
-	    getInitialState: function getInitialState() {
-	        return { firstname: '', lastname: '', email: '' };
-	    },
-	
-	    handleFirstNameChange: function handleFirstNameChange(e) {
-	        this.setState({ firstname: e.target.value });
-	    },
-	
-	    handleLastNameChange: function handleLastNameChange(e) {
-	        this.setState({ lastname: e.target.value });
-	    },
-	
-	    handleEmailChange: function handleEmailChange(e) {
-	        this.setState({ email: e.target.value });
-	    },
-	
-	    handleMobilePhChange: function handleMobilePhChange(e) {
-	        this.setState({ mobilephone: e.target.value });
-	    },
-	
-	    handleHomePhChange: function handleHomePhChange(e) {
-	        this.setState({ homephone: e.target.value });
-	    },
-	
-	    handleWorkPhChange: function handleWorkPhChange(e) {
-	        this.setState({ workphone: e.target.value });
-	    },
-	
-	    handleSubmit: function handleSubmit(e) {
-	        e.preventDefault();
-	        var firstname = this.state.firstname.trim();
-	        var lastname = this.state.lastname.trim();
-	        var email = this.state.email.trim();
-	        if (!firstname || !lastname || !email) {
-	            return;
-	        }
-	        this.props.onContactSubmit({ firstname: firstname, lastname: lastname, email: email });
-	        this.setState({ firstname: '', lastname: '', email: '' });
-	    },
-	
-	    render: function render() {
-	        return React.createElement(
-	            'div',
-	            { className: 'col-md-3' },
-	            React.createElement(
-	                'h3',
-	                null,
-	                'Add Contact'
-	            ),
-	            React.createElement(
-	                'form',
-	                { onSubmit: this.handleSubmit },
-	                React.createElement(
-	                    'div',
-	                    { className: 'form-group' },
-	                    React.createElement(
-	                        'label',
-	                        null,
-	                        'First Name'
-	                    ),
-	                    React.createElement('input', { className: 'form-control', placeHolder: 'First Name', value: this.state.firstname, onChange: this.handleFirstNameChange })
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'form-group' },
-	                    React.createElement(
-	                        'label',
-	                        null,
-	                        'Last Name'
-	                    ),
-	                    React.createElement('input', { className: 'form-control', placeHolder: 'Last Name', value: this.state.lastname, onChange: this.handleLastNameChange })
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'form-group' },
-	                    React.createElement(
-	                        'label',
-	                        null,
-	                        'Email Address'
-	                    ),
-	                    React.createElement('input', { className: 'form-control', placeHolder: 'Email Address', value: this.state.email, onChange: this.handleEmailChange })
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'form-group' },
-	                    React.createElement(
-	                        'label',
-	                        null,
-	                        'Mobile Phone'
-	                    ),
-	                    React.createElement('input', { className: 'form-control', placeHolder: 'Mobile Phone', value: this.state.mobilephone, onChange: this.handleMobilePhChange })
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'form-group' },
-	                    React.createElement(
-	                        'label',
-	                        null,
-	                        'Home Phone'
-	                    ),
-	                    React.createElement('input', { className: 'form-control', placeHolder: 'Home Phone', value: this.state.homephone, onChange: this.handleHomePhChange })
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'form-group' },
-	                    React.createElement(
-	                        'label',
-	                        null,
-	                        'Work Phone'
-	                    ),
-	                    React.createElement('input', { className: 'form-control', placeHolder: 'Work Phone', value: this.state.workphone, onChange: this.handleWorkPhChange })
-	                ),
-	                React.createElement(
-	                    'button',
-	                    { type: 'submit', className: 'btn btn-default' },
-	                    'Submit'
-	                )
-	            )
-	        );
-	    }
-	});
-	
-	var ContactList = React.createClass({
-	    displayName: 'ContactList',
-	
-	    render: function render() {
-	
-	        var contactDelete = this.props.OnContactDelete;
-	
-	        var contacts = [];
-	        this.props.data.forEach(function (contact) {
-	            contacts.push(React.createElement(Contact, { key: contact.id, contact: contact, onContactDelete: contactDelete }));
-	        });
-	        return React.createElement(
-	            'div',
-	            { className: 'col-md-9' },
-	            React.createElement(
-	                'h3',
-	                null,
-	                'All Contacts'
-	            ),
-	            React.createElement(
-	                'table',
-	                { className: 'table table-hover' },
-	                React.createElement(
-	                    'thead',
-	                    null,
-	                    React.createElement(
-	                        'tr',
-	                        null,
-	                        React.createElement(
-	                            'th',
-	                            null,
-	                            'Id'
-	                        ),
-	                        React.createElement(
-	                            'th',
-	                            null,
-	                            'First Name'
-	                        ),
-	                        React.createElement(
-	                            'th',
-	                            null,
-	                            'Last Name'
-	                        ),
-	                        React.createElement(
-	                            'th',
-	                            null,
-	                            'Email'
-	                        ),
-	                        React.createElement(
-	                            'th',
-	                            null,
-	                            'Mobile'
-	                        ),
-	                        React.createElement(
-	                            'th',
-	                            null,
-	                            'Work'
-	                        ),
-	                        React.createElement(
-	                            'th',
-	                            null,
-	                            'Home'
-	                        ),
-	                        React.createElement('th', null),
-	                        React.createElement('th', null)
-	                    )
-	                ),
-	                React.createElement(
-	                    'tbody',
-	                    null,
-	                    contacts
-	                )
-	            )
-	        );
-	    }
-	});
-	
-	var Contact = React.createClass({
-	    displayName: 'Contact',
-	
-	    handleDelete: function handleDelete() {
-	        this.props.onContactDelete(this.props.contact.Id);
-	    },
-	    render: function render() {
-	        return React.createElement(
-	            'tr',
-	            null,
-	            React.createElement(
-	                'td',
-	                null,
-	                this.props.contact.Id
-	            ),
-	            React.createElement(
-	                'td',
-	                null,
-	                this.props.contact.FirstName
-	            ),
-	            React.createElement(
-	                'td',
-	                null,
-	                this.props.contact.LastName
-	            ),
-	            React.createElement(
-	                'td',
-	                null,
-	                this.props.contact.Email
-	            ),
-	            React.createElement(
-	                'td',
-	                null,
-	                this.props.contact.MobilePhone
-	            ),
-	            React.createElement(
-	                'td',
-	                null,
-	                this.props.contact.HomePhone
-	            ),
-	            React.createElement(
-	                'td',
-	                null,
-	                this.props.contact.WorkPhone
-	            ),
-	            React.createElement(
-	                'td',
-	                null,
-	                React.createElement(
-	                    'a',
-	                    { className: 'btn btn-info btn-sm' },
-	                    'Edit'
-	                )
-	            ),
-	            React.createElement(
-	                'td',
-	                null,
-	                React.createElement(
-	                    'a',
-	                    { className: 'btn btn-danger btn-sm', id: this.props.contact.id, onClick: this.handleDelete },
-	                    'Delete'
-	                )
-	            )
-	        );
-	    }
-	
-	});
+	var ContactBox = __webpack_require__(/*! ./contactBox */ 159);
 	
 	ReactDOM.render(React.createElement(ContactBox, null), document.getElementById('root'));
 
@@ -20557,6 +20204,424 @@
 	
 	module.exports = __webpack_require__(/*! react/lib/ReactDOM */ 3);
 
+
+/***/ },
+/* 159 */
+/*!***************************************!*\
+  !*** ./src/components/contactBox.jsx ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(/*! react */ 1);
+	
+	var ContactForm = __webpack_require__(/*! ./contactForm */ 160);
+	var ContactList = __webpack_require__(/*! ./contactList */ 161);
+	
+	var ContactBox = React.createClass({
+	    displayName: 'ContactBox',
+	
+	
+	    getInitialState: function getInitialState() {
+	        return { data: [] };
+	    },
+	
+	    loadContactsFromServer: function loadContactsFromServer() {
+	        $.ajax({
+	            url: 'http://localhost:5000/api/contacts',
+	            dataType: 'json',
+	            type: 'GET',
+	            cache: false,
+	            success: function (data) {
+	                this.setState({ data: data });
+	            }.bind(this),
+	            error: function (xhr, status, err) {
+	                console.error(this.props.url, status, err.toString());
+	            }.bind(this)
+	        });
+	    },
+	
+	    componentDidMount: function componentDidMount() {
+	        this.loadContactsFromServer();
+	    },
+	
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            { className: 'container body-content' },
+	            React.createElement(
+	                'div',
+	                { className: 'row', style: { "margin-top": "30px" } },
+	                React.createElement(ContactForm, { onContactSubmit: this.handleContactSubmit }),
+	                React.createElement(ContactList, { data: this.state.data, OnContactDelete: this.handleDelete })
+	            )
+	        );
+	    },
+	
+	    handleContactSubmit: function handleContactSubmit(contact) {
+	
+	        var contact1 = {
+	            "FirstName": contact.firstname,
+	            "LastName": contact.lastname,
+	            "Email": contact.email
+	        };
+	
+	        $.ajax({
+	            url: 'http://localhost:5000/api/contacts',
+	            dataType: 'json',
+	            type: 'POST',
+	            data: contact1,
+	            success: function (contact) {
+	                //this.setState({ data: data });
+	            }.bind(this),
+	            error: function (xhr, status, err) {
+	                console.error(this.props.url, status, err.toString());
+	            }.bind(this)
+	        });
+	    },
+	
+	    handleDelete: function handleDelete(id) {
+	
+	        $.ajax({
+	            url: 'http://localhost:5000/api/contacts/' + id,
+	            dataType: 'json',
+	            type: 'DELETE',
+	            cache: false,
+	            success: function (res) {
+	                //this.setState({data: res});
+	            }.bind(this),
+	            error: function (xhr, status, err) {
+	                console.error(this.props.url, status, err.toString());
+	            }.bind(this)
+	        });
+	        var items = this.state.data.filter(function (contact) {
+	            return contact.Id != id;
+	        });
+	
+	        this.setState({ data: items });
+	    }
+	
+	});
+	
+	module.exports = ContactBox;
+
+/***/ },
+/* 160 */
+/*!****************************************!*\
+  !*** ./src/components/contactForm.jsx ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(/*! react */ 1);
+	
+	var ContactForm = React.createClass({
+	    displayName: 'ContactForm',
+	
+	    getInitialState: function getInitialState() {
+	        return { firstname: '', lastname: '', email: '' };
+	    },
+	
+	    handleFirstNameChange: function handleFirstNameChange(e) {
+	        this.setState({ firstname: e.target.value });
+	    },
+	
+	    handleLastNameChange: function handleLastNameChange(e) {
+	        this.setState({ lastname: e.target.value });
+	    },
+	
+	    handleEmailChange: function handleEmailChange(e) {
+	        this.setState({ email: e.target.value });
+	    },
+	
+	    handleMobilePhChange: function handleMobilePhChange(e) {
+	        this.setState({ mobilephone: e.target.value });
+	    },
+	
+	    handleHomePhChange: function handleHomePhChange(e) {
+	        this.setState({ homephone: e.target.value });
+	    },
+	
+	    handleWorkPhChange: function handleWorkPhChange(e) {
+	        this.setState({ workphone: e.target.value });
+	    },
+	
+	    handleSubmit: function handleSubmit(e) {
+	        e.preventDefault();
+	        var firstname = this.state.firstname.trim();
+	        var lastname = this.state.lastname.trim();
+	        var email = this.state.email.trim();
+	        if (!firstname || !lastname || !email) {
+	            return;
+	        }
+	        this.props.onContactSubmit({ firstname: firstname, lastname: lastname, email: email });
+	        this.setState({ firstname: '', lastname: '', email: '' });
+	    },
+	
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            { className: 'col-md-3' },
+	            React.createElement(
+	                'h3',
+	                null,
+	                'Add Contact'
+	            ),
+	            React.createElement(
+	                'form',
+	                { onSubmit: this.handleSubmit },
+	                React.createElement(
+	                    'div',
+	                    { className: 'form-group' },
+	                    React.createElement(
+	                        'label',
+	                        null,
+	                        'First Name'
+	                    ),
+	                    React.createElement('input', { className: 'form-control', placeHolder: 'First Name', value: this.state.firstname,
+	                        onChange: this.handleFirstNameChange })
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'form-group' },
+	                    React.createElement(
+	                        'label',
+	                        null,
+	                        'Last Name'
+	                    ),
+	                    React.createElement('input', { className: 'form-control', placeHolder: 'Last Name', value: this.state.lastname,
+	                        onChange: this.handleLastNameChange })
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'form-group' },
+	                    React.createElement(
+	                        'label',
+	                        null,
+	                        'Email Address'
+	                    ),
+	                    React.createElement('input', { className: 'form-control', placeHolder: 'Email Address', value: this.state.email,
+	                        onChange: this.handleEmailChange })
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'form-group' },
+	                    React.createElement(
+	                        'label',
+	                        null,
+	                        'Mobile Phone'
+	                    ),
+	                    React.createElement('input', { className: 'form-control', placeHolder: 'Mobile Phone', value: this.state.mobilephone,
+	                        onChange: this.handleMobilePhChange })
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'form-group' },
+	                    React.createElement(
+	                        'label',
+	                        null,
+	                        'Home Phone'
+	                    ),
+	                    React.createElement('input', { className: 'form-control', placeHolder: 'Home Phone', value: this.state.homephone,
+	                        onChange: this.handleHomePhChange })
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'form-group' },
+	                    React.createElement(
+	                        'label',
+	                        null,
+	                        'Work Phone'
+	                    ),
+	                    React.createElement('input', { className: 'form-control', placeHolder: 'Work Phone', value: this.state.workphone,
+	                        onChange: this.handleWorkPhChange })
+	                ),
+	                React.createElement(
+	                    'button',
+	                    { type: 'submit', className: 'btn btn-default' },
+	                    'Submit'
+	                )
+	            )
+	        );
+	    }
+	});
+	
+	module.exports = ContactForm;
+
+/***/ },
+/* 161 */
+/*!****************************************!*\
+  !*** ./src/components/contactList.jsx ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(/*! react */ 1);
+	
+	var Contact = __webpack_require__(/*! ./contact */ 162);
+	
+	var ContactList = React.createClass({
+	    displayName: 'ContactList',
+	
+	    render: function render() {
+	
+	        var contactDelete = this.props.OnContactDelete;
+	
+	        var contacts = [];
+	        this.props.data.forEach(function (contact) {
+	            contacts.push(React.createElement(Contact, { key: contact.id, contact: contact, onContactDelete: contactDelete }));
+	        });
+	        return React.createElement(
+	            'div',
+	            { className: 'col-md-9' },
+	            React.createElement(
+	                'h3',
+	                null,
+	                'All Contacts'
+	            ),
+	            React.createElement(
+	                'table',
+	                { className: 'table table-hover' },
+	                React.createElement(
+	                    'thead',
+	                    null,
+	                    React.createElement(
+	                        'tr',
+	                        null,
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'Id'
+	                        ),
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'First Name'
+	                        ),
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'Last Name'
+	                        ),
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'Email'
+	                        ),
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'Mobile'
+	                        ),
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'Work'
+	                        ),
+	                        React.createElement(
+	                            'th',
+	                            null,
+	                            'Home'
+	                        ),
+	                        React.createElement('th', null),
+	                        React.createElement('th', null)
+	                    )
+	                ),
+	                React.createElement(
+	                    'tbody',
+	                    null,
+	                    contacts
+	                )
+	            )
+	        );
+	    }
+	});
+	
+	module.exports = ContactList;
+
+/***/ },
+/* 162 */
+/*!************************************!*\
+  !*** ./src/components/contact.jsx ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(/*! react */ 1);
+	
+	var Contact = React.createClass({
+	    displayName: "Contact",
+	
+	    handleDelete: function handleDelete() {
+	        this.props.onContactDelete(this.props.contact.Id);
+	    },
+	    render: function render() {
+	        return React.createElement(
+	            "tr",
+	            null,
+	            React.createElement(
+	                "td",
+	                null,
+	                this.props.contact.Id
+	            ),
+	            React.createElement(
+	                "td",
+	                null,
+	                this.props.contact.FirstName
+	            ),
+	            React.createElement(
+	                "td",
+	                null,
+	                this.props.contact.LastName
+	            ),
+	            React.createElement(
+	                "td",
+	                null,
+	                this.props.contact.Email
+	            ),
+	            React.createElement(
+	                "td",
+	                null,
+	                this.props.contact.MobilePhone
+	            ),
+	            React.createElement(
+	                "td",
+	                null,
+	                this.props.contact.HomePhone
+	            ),
+	            React.createElement(
+	                "td",
+	                null,
+	                this.props.contact.WorkPhone
+	            ),
+	            React.createElement(
+	                "td",
+	                null,
+	                React.createElement(
+	                    "a",
+	                    { className: "btn btn-info btn-sm" },
+	                    "Edit"
+	                )
+	            ),
+	            React.createElement(
+	                "td",
+	                null,
+	                React.createElement(
+	                    "a",
+	                    { className: "btn btn-danger btn-sm", id: this.props.contact.id, onClick: this.handleDelete },
+	                    "Delete"
+	                )
+	            )
+	        );
+	    }
+	
+	});
+	
+	module.exports = Contact;
 
 /***/ }
 /******/ ]);
