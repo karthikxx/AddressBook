@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/packages
+/AddressBook.Api/obj/Debug
+/AddressBook.Api.Tests/bin/Debug
+/AddressBook.Api.Tests/obj/Debug
+/AddressBook.React.Web/obj/Debug
+/AddressBook.React.Web/node_modules

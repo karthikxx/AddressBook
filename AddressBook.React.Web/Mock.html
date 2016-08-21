@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Book</title>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/Site.css" rel="stylesheet" />
+
+    <script src="assets/scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img src="assets/images/1471549160_contacts.png" class="pull-left img-responsive" width="30" style="margin-top: 10px; margin-right: 10px" alt="" />
+                <a class="navbar-brand" href="/">Address Book</a>
+            </div>
+            <div class="navbar-collapse collapse pull-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div class="row" style="margin-top: 30px">
+            <div class="col-md-3">
+                <h3>Add Contact</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="InputFirstName">First Name</label>
+                        <input class="form-control" id="InputFirstName" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="InputLastName">Last Name</label>
+                        <input class="form-control" id="InputLastName" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="InputEmail">Email address</label>
+                        <input type="email" class="form-control" id="InputEmail" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="InputMobilePhone">Mobile Phone</label>
+                        <input class="form-control" id="InputMobilePhone" placeholder="Mobile Phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="InputWorkPhone">Work Phone</label>
+                        <input class="form-control" id="InputWorkPhone" placeholder="Work Phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="InputHomePhone">Home Phone</label>
+                        <input class="form-control" id="InputHomePhone" placeholder="Home Phone">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+
+            <div class="col-md-9">
+                <h3>All Contacts</h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th>Work</th>
+                            <th>Home</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>test@test.com</td>
+                            <td>(123)-456-7890</td>
+                            <td>(123)-456-7890</td>
+                            <td>(123)-456-7890</td>
+                            <td><a class="btn btn-info btn-sm" href="#">Edit</a></td>
+                            <td><a class="btn btn-danger btn-sm" href="#">Delete</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>test@test.com</td>
+                            <td>(123)-456-7890</td>
+                            <td>(123)-456-7890</td>
+                            <td>(123)-456-7890</td>
+                            <td><a class="btn btn-info btn-sm" href="#">Edit</a></td>
+                            <td><a class="btn btn-danger btn-sm" href="#">Delete</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>test@test.com</td>
+                            <td>(123)-456-7890</td>
+                            <td>(123)-456-7890</td>
+                            <td>(123)-456-7890</td>
+                            <td><a class="btn btn-info btn-sm" href="#">Edit</a></td>
+                            <td><a class="btn btn-danger btn-sm" href="#">Delete</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <hr />
+        <footer>
+            <p>&copy; 2016 - Karthik Reddy Gutha</p>
+        </footer>
+    </div>
+
+    <script src="assets/scripts/bootstrap.min.js"></script>
+</body>
+</html>
