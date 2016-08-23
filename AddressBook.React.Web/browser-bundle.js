@@ -55,7 +55,7 @@
 	
 	var ContactBox = __webpack_require__(/*! ./contactBox */ 159);
 	
-	ReactDOM.render(React.createElement(ContactBox, null), document.getElementById('root'));
+	ReactDOM.render(React.createElement(ContactBox, { url: 'http://localhost:5000/api/contacts' }), document.getElementById('root'));
 
 /***/ },
 /* 1 */
@@ -20229,7 +20229,7 @@
 	
 	    loadContactsFromServer: function loadContactsFromServer() {
 	        $.ajax({
-	            url: 'http://localhost:5000/api/contacts',
+	            url: this.props.url,
 	            dataType: 'json',
 	            type: 'GET',
 	            cache: false,
@@ -20261,19 +20261,15 @@
 	
 	    handleContactSubmit: function handleContactSubmit(contact) {
 	
-	        var contact1 = {
-	            "FirstName": contact.firstname,
-	            "LastName": contact.lastname,
-	            "Email": contact.email
-	        };
-	
 	        $.ajax({
-	            url: 'http://localhost:5000/api/contacts',
+	            url: this.props.url,
 	            dataType: 'json',
 	            type: 'POST',
-	            data: contact1,
+	            data: contact,
 	            success: function (contact) {
-	                //this.setState({ data: data });
+	                var items = this.state.data;
+	                items.push(contact);
+	                this.setState({ data: items });
 	            }.bind(this),
 	            error: function (xhr, status, err) {
 	                console.error(this.props.url, status, err.toString());
@@ -20353,11 +20349,17 @@
 	        var firstname = this.state.firstname.trim();
 	        var lastname = this.state.lastname.trim();
 	        var email = this.state.email.trim();
+	        var mobilePhone = this.state.mobilephone;
+	        var homephone = this.state.homephone;
+	        var workphone = this.state.workphone;
 	        if (!firstname || !lastname || !email) {
 	            return;
 	        }
-	        this.props.onContactSubmit({ firstname: firstname, lastname: lastname, email: email });
-	        this.setState({ firstname: '', lastname: '', email: '' });
+	
+	        var contact = { FirstName: firstname, LastName: lastname, Email: email, MobilePhone: mobilePhone, HomePhone: homephone, WorkPhone: workphone };
+	
+	        this.props.onContactSubmit(contact);
+	        this.setState({ firstname: '', lastname: '', email: '', mobilephone: '', homephone: '', workphone: '' });
 	    },
 	
 	    render: function render() {
@@ -20381,7 +20383,7 @@
 	                        'First Name'
 	                    ),
 	                    React.createElement('input', { className: 'form-control', placeHolder: 'First Name', value: this.state.firstname,
-	                        onChange: this.handleFirstNameChange })
+	                        onChange: this.handleFirstNameChange, required: true })
 	                ),
 	                React.createElement(
 	                    'div',
@@ -20392,7 +20394,7 @@
 	                        'Last Name'
 	                    ),
 	                    React.createElement('input', { className: 'form-control', placeHolder: 'Last Name', value: this.state.lastname,
-	                        onChange: this.handleLastNameChange })
+	                        onChange: this.handleLastNameChange, required: true })
 	                ),
 	                React.createElement(
 	                    'div',
@@ -20403,7 +20405,7 @@
 	                        'Email Address'
 	                    ),
 	                    React.createElement('input', { className: 'form-control', placeHolder: 'Email Address', value: this.state.email,
-	                        onChange: this.handleEmailChange })
+	                        onChange: this.handleEmailChange, errorMessage: 'Name is invalid', required: true, type: 'email' })
 	                ),
 	                React.createElement(
 	                    'div',
@@ -20559,6 +20561,10 @@
 	    handleDelete: function handleDelete() {
 	        this.props.onContactDelete(this.props.contact.Id);
 	    },
+	    handleShowModal: function handleShowModal() {
+	        this.setState({ view: { showModal: true } });
+	    },
+	
 	    render: function render() {
 	        return React.createElement(
 	            "tr",
@@ -20603,7 +20609,8 @@
 	                null,
 	                React.createElement(
 	                    "a",
-	                    { className: "btn btn-info btn-sm" },
+	                    { className: "btn btn-info btn-sm",
+	                        onClick: this.handleContactEdit },
 	                    "Edit"
 	                )
 	            ),
@@ -20612,7 +20619,8 @@
 	                null,
 	                React.createElement(
 	                    "a",
-	                    { className: "btn btn-danger btn-sm", id: this.props.contact.id, onClick: this.handleDelete },
+	                    { className: "btn btn-danger btn-sm", id: this.props.contact.id,
+	                        onClick: this.handleDelete },
 	                    "Delete"
 	                )
 	            )

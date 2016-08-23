@@ -11,7 +11,7 @@ var ContactBox = React.createClass({
 
     loadContactsFromServer: function () {
         $.ajax({
-            url: 'http://localhost:5000/api/contacts',
+            url: this.props.url,
             dataType: 'json',
             type: 'GET',
             cache: false,
@@ -41,19 +41,15 @@ var ContactBox = React.createClass({
 
     handleContactSubmit: function (contact) {
 
-        var contact1 = {
-            "FirstName": contact.firstname,
-            "LastName": contact.lastname,
-            "Email": contact.email
-        };
-
         $.ajax({
-            url: 'http://localhost:5000/api/contacts',
+            url: this.props.url,
             dataType: 'json',
             type: 'POST',
-            data: contact1,
+            data: contact,
             success: function (contact) {
-                //this.setState({ data: data });
+                var items = this.state.data;
+                items.push(contact);
+                this.setState({ data: items });
             }.bind(this),
             error: function (xhr, status, err) {
                 console.error(this.props.url, status, err.toString());

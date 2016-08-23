@@ -5,6 +5,9 @@ var Contact = React.createClass({
     handleDelete: function() {
         this.props.onContactDelete(this.props.contact.Id);
     },
+    handleShowModal(){
+        this.setState({view: {showModal: true}})
+    },
     render: function() {
         return(<tr>
                    <td>{this.props.contact.Id}</td>
@@ -14,9 +17,13 @@ var Contact = React.createClass({
                    <td>{this.props.contact.MobilePhone}</td>
                    <td>{this.props.contact.HomePhone}</td>
                    <td>{this.props.contact.WorkPhone}</td>
-                   <td><a className="btn btn-info btn-sm">Edit</a></td>
-                   <td><a className="btn btn-danger btn-sm" id={this.props.contact
-                    .id} onClick={this.handleDelete}>Delete</a></td>
+                   <td><a className="btn btn-info btn-sm" 
+                          onClick={this.handleContactEdit}>Edit</a>
+                   </td>
+                   <td><a className="btn btn-danger btn-sm" id={this.props.contact.id} 
+                            onClick={this.handleDelete}>Delete</a>
+                   </td>
+
                </tr>);
     }
 

@@ -35,11 +35,17 @@ var ContactForm = React.createClass({
         var firstname = this.state.firstname.trim();
         var lastname = this.state.lastname.trim();
         var email = this.state.email.trim();
+        var mobilePhone = this.state.mobilephone;
+        var homephone = this.state.homephone;
+        var workphone = this.state.workphone;
         if (!firstname || !lastname || !email) {
             return;
         }
-        this.props.onContactSubmit({ firstname: firstname, lastname: lastname, email: email });
-        this.setState({ firstname: '', lastname: '', email: '' });
+
+        var contact = {FirstName: firstname, LastName: lastname, Email: email, MobilePhone: mobilePhone, HomePhone: homephone, WorkPhone: workphone};
+
+        this.props.onContactSubmit(contact);
+        this.setState({ firstname: '', lastname: '', email: '', mobilephone: '', homephone: '', workphone: '' });
     },
 
     render: function() {
@@ -49,19 +55,19 @@ var ContactForm = React.createClass({
                         <div className="form-group">
                             <label>First Name</label>
                             <input className="form-control" placeHolder="First Name" value={this.state.firstname}
-                                   onChange={this.handleFirstNameChange}></input>
+                                   onChange={this.handleFirstNameChange} required></input>
                         </div>
 
                         <div className="form-group">
                             <label>Last Name</label>
                             <input className="form-control" placeHolder="Last Name" value={this.state.lastname}
-                                   onChange={this.handleLastNameChange}></input>
+                                   onChange={this.handleLastNameChange} required></input>
                         </div>
 
                         <div className="form-group">
                             <label>Email Address</label>
                             <input className="form-control" placeHolder="Email Address" value={this.state.email}
-                                   onChange={this.handleEmailChange}></input>
+                                   onChange={this.handleEmailChange} errorMessage="Name is invalid" required type="email"></input>
                         </div>
 
                         <div className="form-group">
