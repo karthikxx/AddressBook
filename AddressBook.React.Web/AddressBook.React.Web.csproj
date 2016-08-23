@@ -45,12 +45,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include=".eslintrc" />
     <None Include="src\components\contact.jsx" />
     <None Include="src\components\contactList.jsx" />
     <None Include="src\components\contactBox.jsx" />
     <None Include="src\components\contactForm.jsx" />
     <Content Include="Mock.html" />
     <Content Include="package.json" />
+    <Content Include="src\components\contact.test.js" />
+    <Content Include="tools\testsetup.js" />
     <Content Include="webpack.config.js" />
     <Content Include="src\components\main.jsx" />
   </ItemGroup>
