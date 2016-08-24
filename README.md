@@ -19,10 +19,12 @@ Latest verison of Node.js from
 ## Starting the AddressBook reactjs app
  In Command prompt naviage to AddressBook / AddressBook.UI folder location
  
- In command prompt run the command ...npm install...
+ In command prompt run the command 
+ ```npm install```
  
  This should install all the required npm packages 
 
- Now run ...npm -s start...
+ Now run 
+ ```npm -s start```
 
 A new browser will be opened at ...http:/localhost:5002...
