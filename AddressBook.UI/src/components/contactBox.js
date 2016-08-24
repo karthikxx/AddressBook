@@ -100,9 +100,14 @@ class ContactBox extends React.Component {
 
 
   render() {
+
+    const divStyle = {
+      marginTop:'30px'
+    };
+
     return (
       <div className="container body-content">
-        <div className="row" style={{"margin-top": "30px"}}>
+        <div className="row" style={divStyle}>
           <div className="col-md-3">
             <h3>Add / Update Contact</h3>
             <ContactForm onContactSubmit={this.handleContactSubmit} contact={this.state.contact}/>

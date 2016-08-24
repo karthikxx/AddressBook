@@ -24,10 +24,12 @@ class ContactList extends React.Component {
     let contactUpdate = this.props.OnContactUpdate;
 
     let contacts = [];
-    this.props.data.forEach(function (contact) {
-      contacts.push(<Contact key={contact.Id} contact={contact} onContactDelete={contactDelete}
-                             onContactUpdate={contactUpdate}/>);
-    });
+    if(this.props.data) {
+      this.props.data.forEach(function (contact) {
+        contacts.push(<Contact key={contact.Id} contact={contact} onContactDelete={contactDelete}
+                               onContactUpdate={contactUpdate}/>);
+      });
+    }
     return ( <tbody>
       {contacts}
       </tbody>
