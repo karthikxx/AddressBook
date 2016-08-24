@@ -19,9 +19,9 @@ class ContactList extends React.Component {
   }
 
   render() {
-    let contactDelete = this.props.OnContactDelete;
+    let contactDelete = this.props.onContactDelete;
 
-    let contactUpdate = this.props.OnContactUpdate;
+    let contactUpdate = this.props.onContactUpdate;
 
     let contacts = [];
     if(this.props.data) {
@@ -42,6 +42,7 @@ class ContactList extends React.Component {
 
 ContactList.propTypes = {
   data: PropTypes.array.isRequired,
+  contact: PropTypes.object.isRequired,
   onContactDelete: PropTypes.func.isRequired,
   onContactUpdate: PropTypes.func.isRequired,
   'data.forEach': PropTypes.func.isRequired

@@ -129,8 +129,8 @@ class ContactBox extends React.Component {
               </tr>
               </thead>
 
-              <ContactList data={this.state.data} OnContactDelete={this.handleDelete}
-                           OnContactUpdate={this.handleUpdate}/>
+              <ContactList data={this.state.data} onContactDelete={this.handleDelete}
+                           onContactUpdate={this.handleUpdate}/>
 
             </table>
 

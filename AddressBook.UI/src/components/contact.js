@@ -37,7 +37,8 @@ class Contact extends React.Component{
 
 Contact.propTypes={
   contact: PropTypes.object.isRequired,
-  onContactDelete: PropTypes.func.isRequired
+  onContactDelete: PropTypes.func.isRequired,
+  onContactUpdate: PropTypes.func.isRequired
 };
 
 export default Contact;
