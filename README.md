@@ -17,16 +17,12 @@ Latest verison of Node.js from
  The default browser will be opened with the url 'http:/localhost:5000'
 
 ## Starting the AddressBook reactjs app
- Naviage to AddressBook / AddressBook.UI
- In command prompt run the command
-  ```
- npm install 
-  ```
+ In Command prompt naviage to AddressBook / AddressBook.UI folder location
+ 
+ In command prompt run the command ...npm install...
+ 
  This should install all the required npm packages 
 
- Now run
+ Now run ...npm -s start...
 
-...npm -s start...
-
-A new browser will be opened at
-...http:/localhost:5002...
+A new browser will be opened at ...http:/localhost:5002...
