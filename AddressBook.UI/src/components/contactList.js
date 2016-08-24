@@ -41,6 +41,7 @@ class ContactList extends React.Component {
 ContactList.propTypes = {
   data: PropTypes.array.isRequired,
   onContactDelete: PropTypes.func.isRequired,
+  onContactUpdate: PropTypes.func.isRequired,
   'data.forEach': PropTypes.func.isRequired
 };
 

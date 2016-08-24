@@ -1,4 +1,3 @@
-/*
 
 import expect from 'expect';
 import React from 'react';
@@ -7,7 +6,8 @@ import ContactForm from '../components/contactForm';
 
 function setup(){
   let renderer = TestUtils.createRenderer();
-  renderer.render(<ContactForm/>);
+  const contact = { Id: 1, Firstname: "Waldo" };
+  renderer.render(<ContactForm contact={contact}/>);
   let output = renderer.getRenderOutput();
 
   return{
@@ -24,4 +24,3 @@ describe('Contact Form Shallow rendering tests', () => {
     expect(div.type).toBe('div');
   });
 });
-*/
