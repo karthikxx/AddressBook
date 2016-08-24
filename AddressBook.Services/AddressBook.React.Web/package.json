@@ -28,6 +28,6 @@
     "expect": "1.19.0",
     "mocha": "2.4.5",
     "jsdom": "8.5.0",
-    "react-addons-test-utils": "15.0.2",
+    "react-addons-test-utils": "15.0.2"
   }
 }

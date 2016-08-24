@@ -138,7 +138,7 @@ namespace AddressBook.Api.Tests.Controllers
         }
 
         [Test]
-        public void UpdateContactWithValidData_ReturnsNoContent()
+        public void UpdateContactWithValidData_ReturnsUpdatedContract()
         {
             //Arrage
             var mockRepo = new Mock<IRepository<Contact>>();
@@ -147,11 +147,12 @@ namespace AddressBook.Api.Tests.Controllers
           
             //Act
             var updatedResult = contactController.PutContact(1, TestHelper.ExistingContact);
-            var response = updatedResult as System.Web.Http.Results.StatusCodeResult;
+            
+            var response = updatedResult as OkNegotiatedContentResult<Contact>;
 
             //Assert
             Assert.IsNotNull(response);
-            Assert.AreEqual(HttpStatusCode.NoContent, response.StatusCode);
+            
         }
 
         [Test]

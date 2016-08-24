@@ -50,7 +50,7 @@ namespace AddressBook.Api.Controllers
         }
 
         // PUT: api/Contacts/5
-        [ResponseType(typeof(void))]
+        [ResponseType(typeof(Contact))]
         [EnableCors("*", "*", "*")]
         public IHttpActionResult PutContact(int id, Contact contact)
         {
@@ -63,7 +63,6 @@ namespace AddressBook.Api.Controllers
             {
                 return BadRequest();
             }
-
             
             try
             {
@@ -74,7 +73,7 @@ namespace AddressBook.Api.Controllers
                 return NotFound();
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(contact);
         }
 
         // POST: api/Contacts
