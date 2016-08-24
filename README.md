@@ -5,7 +5,8 @@ A small address book application using ASP.NET web api and Reactjs
 * VS2015
 * Latest verison of Node.js from 
  ...
-https://nodejs.org/en/
+
+ https://nodejs.org/en/
  ...
 
 ## Startting the ASP.NET Web API on localhost
@@ -18,14 +19,17 @@ https://nodejs.org/en/
 * Naviage to AddressBook / AddressBook.UI
 * In command prompt run the command
   ```
-  npm install 
+ npm install 
   ```
 * This should install all the required npm packages 
 * Now run
 ...
+
 npm -s start
 ...
+
 * A new browser will be opened at
 ...
+
 http:/localhost:5002
 ...
