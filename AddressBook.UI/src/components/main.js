@@ -9,6 +9,6 @@ import '../assets/css/site.css';
 
 
 render(
-    <ContactBox url="http://localhost:5000/api/contacts"/>,
+    <ContactBox url="http://localhost:5000/api/contacts/"/>,
     document.getElementById('root')
 );

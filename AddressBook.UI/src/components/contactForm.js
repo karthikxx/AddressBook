@@ -67,6 +67,7 @@ class ContactForm extends React.Component {
     newContact.MobilePhone = '';
     newContact.HomePhone = '';
     newContact.WorkPhone = '';
+    newContact.Id ='';
     this.setState(newContact);
   }
 

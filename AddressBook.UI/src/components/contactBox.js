@@ -55,14 +55,15 @@ class ContactBox extends React.Component {
     }
     else {
       $.ajax({
-        url: 'http://localhost:5000/api/contacts/' + contact.Id,
+        url: this.props.url + contact.Id,
         dataType: 'json',
         type: 'PUT',
         data: contact,
         success: function (contact) {
           let items = this.state.data.filter(function (item) {
-            return item.Id != contact.Id;
+            return item.Id != contact.Id && item.Id !="";
           });
+
           items.push(contact);
           this.setState({data: items});
         }.bind(this),
@@ -75,7 +76,7 @@ class ContactBox extends React.Component {
   handleDelete(id) {
 
     $.ajax({
-      url: 'http://localhost:5000/api/contacts/' + id,
+      url: this.props.url + id,
       dataType: 'json',
       type: 'DELETE',
       cache: false,
