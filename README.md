@@ -1,6 +1,4 @@
 # AddressBook
 A small address book application using ASP.NET web api and Reactjs
 
-Getting Started
-
-Navigate to 
+Navigate to AddressBook/AddressBook.Services/AddressBook.Api/
