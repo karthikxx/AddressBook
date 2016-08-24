@@ -2,10 +2,11 @@
 A small address book application using ASP.NET web api and Reactjs
 
 ## Pre requisite applications required
-* VS2015
-* Latest verison of Node.js from 
- ...
 
+VS2015
+
+Latest verison of Node.js from 
+ ...
  https://nodejs.org/en/
  ...
 
