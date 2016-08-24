@@ -1,7 +1,7 @@
 # AddressBook
 A small address book application using ASP.NET web api and Reactjs
 
-## Pre requisite applications required
+## Pre-requisite Software required
 
 VS2015
 
@@ -11,7 +11,7 @@ Latest verison of Node.js from
  
 
 ## Startting the ASP.NET Web API on localhost
- Navigate to AddressBook/AddressBook.Services/ and open the AddressBook.sln in VS2015
+ Navigate to ```AddressBook/AddressBook.Services/``` and open the AddressBook.sln in VS2015
  
  Restore the Nuget Packages (A build in VS should do it, if not, restore manually from the nuget package manager)
  
@@ -19,7 +19,6 @@ Latest verison of Node.js from
  
  The default browser will be opened with the url 
  ```
- 
  http:/localhost:5000
  ```
 
@@ -27,11 +26,15 @@ Latest verison of Node.js from
  In Command prompt naviage to AddressBook / AddressBook.UI folder location
  
  In command prompt run the command 
- ```npm install```
+ ```
+ npm install
+ ```
  
  This should install all the required npm packages 
 
  Now run 
- ```npm -s start```
+ ```
+ npm -s start
+ ```
 
-A new browser will be opened at ...http:/localhost:5002...
+A new browser will be opened at ```http:/localhost:5002```
