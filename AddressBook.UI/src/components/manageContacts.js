@@ -1,9 +1,9 @@
 import React, {PropTypes} from 'react';
 
-import ContactForm from './contactForm';
 import ContactList from './contactList';
+import ContactPage from './contactPage';
 
-class ContactBox extends React.Component {
+class ManageContacts extends React.Component {
   constructor() {
     super();
 
@@ -65,6 +65,11 @@ class ContactBox extends React.Component {
           });
 
           items.push(contact);
+
+          items.sort(function(a, b) {
+            return a.Id - b.Id;
+          });
+
           this.setState({data: items});
         }.bind(this),
         error: function (xhr, status, err) {
@@ -109,8 +114,7 @@ class ContactBox extends React.Component {
       <div className="container body-content">
         <div className="row" style={divStyle}>
           <div className="col-md-3">
-            <h3>Add / Update Contact</h3>
-            <ContactForm onContactSubmit={this.handleContactSubmit} contact={this.state.contact}/>
+            <ContactPage onContactSubmit={this.handleContactSubmit} contact={this.state.contact}/>
           </div>
           <div className="col-md-9">
             <h3>All Contacts</h3>
@@ -142,8 +146,8 @@ class ContactBox extends React.Component {
   }
 }
 
-ContactBox.propTypes = {
+ManageContacts.propTypes = {
   url: PropTypes.string.isRequired
 };
 
-export default ContactBox;
+export default ManageContacts;

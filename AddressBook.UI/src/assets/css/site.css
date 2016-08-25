@@ -26,3 +26,7 @@ textarea {
 td {
   font-size: 12px;
 }
+
+.alert {
+  padding: 3px;
+}
